@@ -1,26 +1,25 @@
 import {definePlugin} from 'sanity'
-
-interface MyPluginConfig {
-  /* nothing here yet */
-}
+import {simplerColor} from './schemas/simplerColor'
 
 /**
  * Usage in `sanity.config.ts` (or .js)
  *
  * ```ts
  * import {defineConfig} from 'sanity'
- * import {myPlugin} from 'sanity-plugin-simpler-color-input'
+ * import {simplerColorInput} from 'sanity-plugin-simpler-color-input'
  *
  * export default defineConfig({
  *   // ...
- *   plugins: [myPlugin()],
+ *   plugins: [simplerColorInput()],
  * })
  * ```
  */
-export const myPlugin = definePlugin<MyPluginConfig | void>((config = {}) => {
-  // eslint-disable-next-line no-console
-  console.log('hello from sanity-plugin-simpler-color-input')
-  return {
-    name: 'sanity-plugin-simpler-color-input',
-  }
+export const simplerColorInput = definePlugin({
+  name: 'sanity-plugin-simpler-color-input',
+  schema: {
+    types: [simplerColor],
+  },
 })
+
+export {SimplerColorInput} from './ColorInput'
+export type {SimplerColorInputProps, SimplerColorSchemaType, SimplerColorType} from './ColorInput'
