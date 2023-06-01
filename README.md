@@ -6,7 +6,7 @@
       <p>Created by <a href="https://github.com/AlyssaKirstine">@AlyssaKirstine</a></p>
   </div>
 
-![This is an image](assets/allow-custom-value.png)
+![Color input dropdown](assets/allow-custom-value.png)
 
 
 ## 🤩 Features
@@ -69,7 +69,7 @@ Now you can use the `simplerColor` type in your schema types:
 
 ### Color list
 
-To add list of predefined selectable color swatches for the user to choose from use `colorList`.
+To add list of predefined selectable color swatches for the user to choose from use `colorList`. Supports hexadecimal, RGB, or HSL color values. See [legal CSS color values](https://www.w3schools.com/cssref/css_colors_legal.php) for specification.
 
 ```js
 // ...fields...
@@ -90,11 +90,11 @@ To add list of predefined selectable color swatches for the user to choose from 
 
 Which will render accordingly:
 
-![This is an image](assets/color-list.png)
+![Color List example](assets/color-list.png)
 
 ### Allow Custom Values
 
-To allow custom color values, set `allowCustomValue` to `true`:
+To allow custom color values, add an array item to `colorList` with its value set to `custom`.
 
 ```js
 // ...fields...
@@ -108,15 +108,16 @@ To allow custom color values, set `allowCustomValue` to `true`:
       { label: 'Dark', value: '#333333' },
       { label: 'Brand', value: '#ca786d' },
       { label: 'Accent', value: '#626754' },
+      { label: 'Custom...', value: 'custom' },
     ],
-    allowCustomValue: true
   }
 }
 ```
 
 Which will render accordingly:
 
-![This is an image](assets/color-picker.png)
+![Allow custom value example](assets/allow-custom-value.png)
+![Color picker](assets/color-picker.png)
 
 **Note:** custom color values will automatically be enabled if no color list is specified.
 

@@ -1,8 +1,9 @@
 import {ChevronDownIcon} from '@sanity/icons'
-import {Box, Button, Card, Container, Inline, Popover, Stack, Text} from '@sanity/ui'
+import {Box, Button, Card, Container, Flex, Inline, Popover, Stack, Text} from '@sanity/ui'
 import React, {useCallback, useEffect, useRef, useState} from 'react'
-import {ObjectInputProps, ObjectOptions, ObjectSchemaType, set} from 'sanity'
+import {ObjectInputProps, ObjectOptions, ObjectSchemaType, set, unset} from 'sanity'
 import {ChromePicker} from 'react-color'
+import {CloseIcon} from '@sanity/icons'
 
 export interface SimplerColorType {
   label: string
@@ -11,7 +12,6 @@ export interface SimplerColorType {
 
 export interface ColorOptions extends Omit<ObjectOptions, 'columns'> {
   colorList?: Array<SimplerColorType>
-  allowCustomValue?: boolean
 }
 
 export type SimplerColorSchemaType = Omit<ObjectSchemaType, 'options'> & {
@@ -81,38 +81,69 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
         portal
         open={pickerIsOpen}
       >
-        <Button
-          style={{width: '100%', textAlign: 'center'}}
-          mode="ghost"
-          padding={2}
-          onClick={() =>
-            type.options?.colorList ? setIsOpen(!isOpen) : setPickerIsOpen(!pickerIsOpen)
-          }
-        >
-          <Inline space={4}>
-            <Inline space={1}>
-              <Box>
-                <Card
-                  style={{backgroundColor: selectedColor?.value || '#ffffff'}}
-                  radius={2}
-                  shadow={1}
-                  padding={2}
-                  margin={1}
-                />
-              </Box>
-              <Text weight="bold">{selectedColor?.label || 'Select a color...'} </Text>
-              <Text>{selectedColor?.value}</Text>
+        <Flex>
+          <Button
+            style={{
+              width: '100%',
+              textAlign: 'center',
+              borderTopRightRadius: '0',
+              borderBottomRightRadius: '0',
+            }}
+            mode="ghost"
+            padding={2}
+            onClick={() =>
+              type.options?.colorList ? setIsOpen(!isOpen) : setPickerIsOpen(!pickerIsOpen)
+            }
+          >
+            <Inline space={4}>
+              <Inline space={1}>
+                <Box>
+                  <Card
+                    style={{backgroundColor: selectedColor?.value || '#ffffff'}}
+                    radius={2}
+                    shadow={1}
+                    padding={2}
+                    margin={1}
+                  />
+                </Box>
+                <Text weight="semibold">{selectedColor?.label || 'Select a color...'} </Text>
+                <Text>{selectedColor?.value}</Text>
+              </Inline>
+              <ChevronDownIcon width={32} height={32} />
             </Inline>
-            <ChevronDownIcon width={32} height={32} />
-          </Inline>
-        </Button>
+          </Button>
+          <Button
+            mode="ghost"
+            onClick={() => {
+              setSelectedColor(undefined)
+              onChange(unset())
+            }}
+            style={{borderTopLeftRadius: '0', borderBottomLeftRadius: '0'}}
+          >
+            <Inline space={1}>
+              <CloseIcon width={24} height={24} />
+              <Text weight="semibold">Clear</Text>
+            </Inline>
+          </Button>
+        </Flex>
       </Popover>
-
       {isOpen && type.options?.colorList && (
         <Card radius={2} shadow={3} marginTop={1} overflow="hidden">
           <Stack>
-            {type.options?.colorList?.map((color) => {
-              return (
+            {type.options?.colorList?.map((color) =>
+              color.value === 'custom' ? (
+                <Button
+                  key={color.label}
+                  radius={0}
+                  mode="bleed"
+                  onClick={() => {
+                    setIsOpen(false)
+                    setPickerIsOpen(true)
+                  }}
+                >
+                  <Text>{color.label}</Text>
+                </Button>
+              ) : (
                 <Button
                   key={color.label}
                   radius={0}
@@ -131,18 +162,6 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
                   </Box>
                 </Button>
               )
-            })}
-            {type.options?.allowCustomValue && (
-              <Button
-                radius={0}
-                mode="bleed"
-                onClick={() => {
-                  setIsOpen(false)
-                  setPickerIsOpen(true)
-                }}
-              >
-                <Text>Custom...</Text>
-              </Button>
             )}
           </Stack>
         </Card>
