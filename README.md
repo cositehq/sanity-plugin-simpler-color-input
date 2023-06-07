@@ -100,7 +100,7 @@ To allow custom color values, add an array item to `colorList` with its value se
 // ...fields...
 {
   name: 'backgroundColor',
-  title: 'Background Color no-alpha',
+  title: 'Background Color with Custom Values',
   type: 'simplerColor',
   options: {
     colorList: [
@@ -120,6 +120,27 @@ Which will render accordingly:
 ![Color picker](assets/color-picker.png)
 
 **Note:** custom color values will automatically be enabled if no color list is specified.
+
+### Enable Alpha Slider
+
+To add alpha slider and options to custom color picker, set `enableAlpha` to `true`.
+
+```js
+// ...fields...
+{
+  name: 'backgroundColor',
+  title: 'Background Color with Alpha Slider',
+  type: 'simplerColor',
+  options: {
+    enableAlpha: true,
+  }
+}
+```
+
+Which will render accordingly:
+
+![Enable alpha example](assets/enable-alpha.png)
+
 
 ## 📚 Data model
 

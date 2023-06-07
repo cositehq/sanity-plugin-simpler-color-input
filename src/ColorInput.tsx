@@ -4,6 +4,7 @@ import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {ObjectInputProps, ObjectOptions, ObjectSchemaType, set, unset} from 'sanity'
 import {ChromePicker} from 'react-color'
 import {CloseIcon} from '@sanity/icons'
+import {RGBColor} from 'react-color'
 
 export interface SimplerColorType {
   label: string
@@ -12,6 +13,7 @@ export interface SimplerColorType {
 
 export interface ColorOptions extends Omit<ObjectOptions, 'columns'> {
   colorList?: Array<SimplerColorType>
+  enableAlpha: boolean
 }
 
 export type SimplerColorSchemaType = Omit<ObjectSchemaType, 'options'> & {
@@ -36,17 +38,23 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
     [onChange]
   )
 
-  const handleChange2 = (color: {hex: string}) => {
+  const handleChange2 = (color: {rgb: RGBColor}) => {
+    const {r, g, b, a} = color.rgb
+    const rgb = `rgb(${r}, ${g}, ${b})`
+    const rgba = `rgba(${r}, ${g}, ${b}, ${a})`
     const formattedColor = {
       label: 'Custom',
-      value: color.hex,
+      value: type.options?.enableAlpha ? rgba : rgb,
     }
     setSelectedColor(formattedColor)
   }
-  const handleChangeComplete = (color: {hex: string}) => {
+  const handleChangeComplete = (color: {rgb: RGBColor}) => {
+    const {r, g, b, a} = color.rgb
+    const rgb = `rgb(${r}, ${g}, ${b})`
+    const rgba = `rgba(${r}, ${g}, ${b}, ${a})`
     const formattedColor = {
       label: 'Custom',
-      value: color.hex,
+      value: type.options?.enableAlpha ? rgba : rgb,
     }
     setSelectedColor(formattedColor)
     onChange(set(formattedColor))
@@ -75,7 +83,7 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
             onChange={handleChange2}
             onChangeComplete={handleChangeComplete}
             color={selectedColor?.value}
-            disableAlpha
+            disableAlpha={!type.options?.enableAlpha}
           />
         }
         portal
