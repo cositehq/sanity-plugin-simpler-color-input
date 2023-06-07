@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.0.1...v1.1.0) (2023-06-07)
+
+### Features
+
+- enable alpha slider on color picker ([7f6177d](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/7f6177d76e22aa81e9bb83e813d5279e7f327545))
+
 ## [1.0.1](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.0.0...v1.0.1) (2023-06-01)
 
 ### Bug Fixes
