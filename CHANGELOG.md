@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.1.0...v1.2.0) (2023-11-06)
+
+### Features
+
+- add textColor and highlightColor annotation schemas ([4b850d9](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/4b850d94f53f38dca0b83b233dbf65d7a0e1d058))
+
 ## [1.1.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.0.1...v1.1.0) (2023-06-07)
 
 ### Features
