@@ -1,5 +1,7 @@
 import {definePlugin} from 'sanity'
 import {simplerColor} from './schemas/simplerColor'
+import {textColor} from './schemas/textColor'
+import {highlightColor} from './schemas/highlightColor'
 
 /**
  * Usage in `sanity.config.ts` (or .js)
@@ -17,7 +19,7 @@ import {simplerColor} from './schemas/simplerColor'
 export const simplerColorInput = definePlugin({
   name: 'sanity-plugin-simpler-color-input',
   schema: {
-    types: [simplerColor],
+    types: [simplerColor, textColor, highlightColor],
   },
 })
 

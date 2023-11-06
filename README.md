@@ -17,6 +17,8 @@
 
 ✓ Select a color from a predefined theme
 
+✓ Use in the Portable Text editor to color or highlight text
+
 ✓ Dark mode support
 
 ## 🔌 Install
@@ -49,7 +51,9 @@ export default defineConfig({
 })
 ```
 
-Now you can use the `simplerColor` type in your schema types:
+### Use as a Standalone Field
+
+You can use the `simplerColor` type in your schema types:
 
 ```js
 // [...]
@@ -65,6 +69,64 @@ Now you can use the `simplerColor` type in your schema types:
 }
 ```
 
+### Use in Portable Text editor
+
+Or you can use the `textColor` and `highlightColor` types to annotate text in the Portable Text editor:
+
+![Portable text editor example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/7f6177d76e22aa81e9bb83e813d5279e7f327545/assets/portable-text-editor.png)
+
+#### Text Color
+
+```js
+{
+  type: 'block',
+  marks: {
+    // ...,
+    annotations: [
+      // ...,
+      {
+        type: 'textColor',
+      };
+    ],
+  }
+}
+```
+
+#### Highlight Color
+
+```js
+{
+  type: 'block',
+  marks: {
+    // ...,
+    annotations: [
+      // ...,
+      {
+        type: 'highlightColor',
+      };
+    ],
+  }
+}
+```
+
+#### Render in Frontend
+
+If you're using the [`@portabletext/react`](https://www.npmjs.com/package/@portabletext/react) package, you can pass the following code into the custom components property to render these colors in your frontend.
+
+```js
+const myPortableTextComponents = {
+  // ...,
+  marks: {
+    textColor: ({children, value}) => <span style={{color: value.value}}>{children}</span>,
+    highlightColor: ({children, value}) => (
+      <span style={{background: value.value}}>{children}</span>
+    ),
+  },
+}
+```
+
+This can be adapted to fit the framework you're using. You just need to know that the `textColor` and `highlightColor` color values are stored in the `value` property.
+
 ## ⚙️ Options
 
 ### Color list
@@ -76,7 +138,7 @@ To add list of predefined selectable color swatches for the user to choose from 
 {
   name: 'backgroundColor',
   title: 'Background Color with List',
-  type: 'simplerColor',
+  type: 'simplerColor', // or textColor or highlightColor
   options: {
     colorList: [
       { label: 'Light', value: '#ffffff' },
@@ -101,7 +163,7 @@ To allow custom color values, add an array item to `colorList` with its value se
 {
   name: 'backgroundColor',
   title: 'Background Color with Custom Values',
-  type: 'simplerColor',
+  type: 'simplerColor', // or textColor or highlightColor
   options: {
     colorList: [
       { label: 'Light', value: '#ffffff' },
@@ -130,7 +192,7 @@ To add alpha slider and options to custom color picker, set `enableAlpha` to `tr
 {
   name: 'backgroundColor',
   title: 'Background Color with Alpha Slider',
-  type: 'simplerColor',
+  type: 'simplerColor', // or textColor or highlightColor
   options: {
     enableAlpha: true,
   }
@@ -141,12 +203,11 @@ Which will render accordingly:
 
 ![Enable alpha example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/7f6177d76e22aa81e9bb83e813d5279e7f327545/assets/enable-alpha.png)
 
-
 ## 📚 Data model
 
 ```js
 {
-  _type: 'simplerColor',
+  _type: 'simplerColor', // or textColor or highlightColor
   label: 'Brand',
   value: '#ca786d',
 }
@@ -157,6 +218,8 @@ Which will render accordingly:
 Created by [@AlyssaKirstine](https://github.com/AlyssaKirstine)
 
 [MIT](LICENSE) © Cosite LLC
+
+_Thank you to [@theostrahlen](https://github.com/theostrahlen) for parts of the code for the Portable Text annotations addition!_
 
 ## 🧪 Develop & test
 

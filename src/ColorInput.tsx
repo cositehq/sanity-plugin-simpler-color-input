@@ -2,9 +2,8 @@ import {ChevronDownIcon} from '@sanity/icons'
 import {Box, Button, Card, Container, Flex, Inline, Popover, Stack, Text} from '@sanity/ui'
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {ObjectInputProps, ObjectOptions, ObjectSchemaType, set, unset} from 'sanity'
-import {ChromePicker} from 'react-color'
+import {ChromePicker, RGBColor} from 'react-color'
 import {CloseIcon} from '@sanity/icons'
-import {RGBColor} from 'react-color'
 
 export interface SimplerColorType {
   label: string
@@ -33,9 +32,9 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
     (color: SimplerColorType) => {
       setSelectedColor(color)
       setIsOpen(false)
-      onChange(set(color))
+      onChange(set({...props.value, ...color}))
     },
-    [onChange]
+    [onChange, props.value]
   )
 
   const handleChange2 = (color: {rgb: RGBColor}) => {
@@ -57,7 +56,7 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
       value: type.options?.enableAlpha ? rgba : rgb,
     }
     setSelectedColor(formattedColor)
-    onChange(set(formattedColor))
+    onChange(set({...props.value, ...formattedColor}))
   }
 
   const ref: React.RefObject<HTMLDivElement> = useRef(null)
