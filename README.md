@@ -73,7 +73,7 @@ You can use the `simplerColor` type in your schema types:
 
 Or you can use the `textColor` and `highlightColor` types to annotate text in the Portable Text editor:
 
-![Portable text editor example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/7f6177d76e22aa81e9bb83e813d5279e7f327545/assets/portable-text-editor.png)
+![Portable text editor example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/4b850d94f53f38dca0b83b233dbf65d7a0e1d058/assets/portable-text-editor.png)
 
 #### Text Color
 
