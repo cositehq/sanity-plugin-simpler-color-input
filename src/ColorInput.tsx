@@ -4,6 +4,7 @@ import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {ObjectInputProps, ObjectOptions, ObjectSchemaType, set, unset} from 'sanity'
 import {ChromePicker, RGBColor} from 'react-color'
 import {CloseIcon} from '@sanity/icons'
+import styled from 'styled-components'
 
 export interface SimplerColorType {
   label: string
@@ -73,17 +74,29 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
     }
   }, [isOpen, pickerIsOpen, ref])
 
+  const ChromePickerWrapper = styled.div`
+    .chrome-picker {
+      background: inherit !important;
+    }
+
+    input {
+      color: inherit !important;
+    }
+  `
+
   return (
     <Container>
       <Popover
         ref={ref}
         content={
-          <ChromePicker
-            onChange={handleChange2}
-            onChangeComplete={handleChangeComplete}
-            color={selectedColor?.value}
-            disableAlpha={!type.options?.enableAlpha}
-          />
+          <ChromePickerWrapper>
+            <ChromePicker
+              onChange={handleChange2}
+              onChangeComplete={handleChangeComplete}
+              color={selectedColor?.value}
+              disableAlpha={!type.options?.enableAlpha}
+            />
+          </ChromePickerWrapper>
         }
         portal
         open={pickerIsOpen}
