@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.2.0...v1.2.1) (2023-11-07)
+
+### Bug Fixes
+
+- unreadable input in dark mode ([a4c4a14](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/a4c4a14b0fe32dae7b40c2c6502e94ac69261356))
+
 ## [1.2.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.1.0...v1.2.0) (2023-11-06)
 
 ### Features
