@@ -13,7 +13,9 @@ export interface SimplerColorType {
 
 export interface ColorOptions extends Omit<ObjectOptions, 'columns'> {
   colorList?: Array<SimplerColorType>
-  enableAlpha: boolean
+  enableAlpha?: boolean
+  defaultColorList?: Array<SimplerColorType>
+  defaultEnableAlpha?: boolean
 }
 
 export type SimplerColorSchemaType = Omit<ObjectSchemaType, 'options'> & {
@@ -38,13 +40,16 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
     [onChange, props.value]
   )
 
+  const colorList = type.options?.colorList || type.type?.options?.defaultColorList
+  const enableAlpha = type.options?.enableAlpha ?? type.type?.options?.defaultEnableAlpha
+
   const handleChange2 = (color: {rgb: RGBColor}) => {
     const {r, g, b, a} = color.rgb
     const rgb = `rgb(${r}, ${g}, ${b})`
     const rgba = `rgba(${r}, ${g}, ${b}, ${a})`
     const formattedColor = {
       label: 'Custom',
-      value: type.options?.enableAlpha ? rgba : rgb,
+      value: enableAlpha ? rgba : rgb,
     }
     setSelectedColor(formattedColor)
   }
@@ -54,7 +59,7 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
     const rgba = `rgba(${r}, ${g}, ${b}, ${a})`
     const formattedColor = {
       label: 'Custom',
-      value: type.options?.enableAlpha ? rgba : rgb,
+      value: enableAlpha ? rgba : rgb,
     }
     setSelectedColor(formattedColor)
     onChange(set({...props.value, ...formattedColor}))
@@ -94,7 +99,7 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
               onChange={handleChange2}
               onChangeComplete={handleChangeComplete}
               color={selectedColor?.value}
-              disableAlpha={!type.options?.enableAlpha}
+              disableAlpha={!enableAlpha}
             />
           </ChromePickerWrapper>
         }
@@ -112,7 +117,9 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
             mode="ghost"
             padding={2}
             onClick={() =>
-              type.options?.colorList ? setIsOpen(!isOpen) : setPickerIsOpen(!pickerIsOpen)
+              colorList && colorList.length > 0
+                ? setIsOpen(!isOpen)
+                : setPickerIsOpen(!pickerIsOpen)
             }
           >
             <Inline space={4}>
@@ -147,10 +154,10 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
           </Button>
         </Flex>
       </Popover>
-      {isOpen && type.options?.colorList && (
+      {isOpen && colorList && (
         <Card radius={2} shadow={3} marginTop={1} overflow="hidden">
           <Stack>
-            {type.options?.colorList?.map((color) =>
+            {colorList?.map((color: SimplerColorType) =>
               color.value === 'custom' ? (
                 <Button
                   key={color.label}

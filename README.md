@@ -46,10 +46,22 @@ import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
 export default defineConfig({
   //...
   plugins: [
-    simplerColorInput()
+    simplerColorInput({
+      // Note: These are both optional
+      defaultEnableAlpha: true,
+      defaultColorList: [
+        { label: 'Light', value: '#ffffff' },
+        { label: 'Dark', value: '#333333' },
+        { label: 'Brand', value: '#ca786d' },
+        { label: 'Accent', value: '#626754' },
+        { label: 'Custom...', value: 'custom' },
+      ],
+    })
   ],
 })
 ```
+
+Learn more about the `colorList` and `enableAlpha` properties in the [Options](#color-list) section.
 
 ### Use as a Standalone Field
 
@@ -133,6 +145,8 @@ This can be adapted to fit the framework you're using. You just need to know tha
 
 To add list of predefined selectable color swatches for the user to choose from use `colorList`. Supports hexadecimal, RGB, or HSL color values. See [legal CSS color values](https://www.w3schools.com/cssref/css_colors_legal.php) for specification.
 
+**Note:** this will take precedence over the value of `defaultColorList` in the plugin options.
+
 ```js
 // ...fields...
 {
@@ -186,6 +200,8 @@ Which will render accordingly:
 ### Enable Alpha Slider
 
 To add alpha slider and options to custom color picker, set `enableAlpha` to `true`.
+
+**Note:** this will take precedence over the value of `defaultEnableAlpha` in the plugin config.
 
 ```js
 // ...fields...

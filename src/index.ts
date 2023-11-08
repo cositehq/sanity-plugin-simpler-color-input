@@ -3,6 +3,11 @@ import {simplerColor} from './schemas/simplerColor'
 import {textColor} from './schemas/textColor'
 import {highlightColor} from './schemas/highlightColor'
 
+interface SimplerColorInputConfig {
+  defaultColorList?: Array<{label: string; value: string}>
+  defaultEnableAlpha?: boolean
+}
+
 /**
  * Usage in `sanity.config.ts` (or .js)
  *
@@ -16,11 +21,17 @@ import {highlightColor} from './schemas/highlightColor'
  * })
  * ```
  */
-export const simplerColorInput = definePlugin({
-  name: 'sanity-plugin-simpler-color-input',
-  schema: {
-    types: [simplerColor, textColor, highlightColor],
-  },
+export const simplerColorInput = definePlugin<SimplerColorInputConfig | void>((options) => {
+  return {
+    name: 'sanity-plugin-simpler-color-input',
+    schema: {
+      types: [
+        {...simplerColor, options},
+        {...textColor, options},
+        {...highlightColor, options},
+      ],
+    },
+  }
 })
 
 export {SimplerColorInput} from './ColorInput'
