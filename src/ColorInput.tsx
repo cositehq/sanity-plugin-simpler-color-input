@@ -9,6 +9,8 @@ import styled from 'styled-components'
 export interface SimplerColorType {
   label: string
   value: string
+  _type?: string // included in textColor and highlightColor annotation types
+  _key?: string // included in textColor and highlightColor annotation types
 }
 
 export interface ColorOptions extends Omit<ObjectOptions, 'columns'> {
@@ -29,7 +31,7 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
   const {onChange} = props
   const value = props.value as SimplerColorType | undefined
   const type = props.schemaType as SimplerColorSchemaType
-  const [selectedColor, setSelectedColor] = useState<SimplerColorType | undefined>(value)
+  const [selectedColor, setSelectedColor] = useState<Partial<SimplerColorType> | undefined>(value)
 
   const handleChange = useCallback(
     (color: SimplerColorType) => {
@@ -142,8 +144,16 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
           <Button
             mode="ghost"
             onClick={() => {
-              setSelectedColor(undefined)
-              onChange(unset())
+              if (value !== undefined && value._key) {
+                // we need to handle annotations differently to
+                // prevent errors in the Portable Text editor
+                const annotationValue = {_type: value._type, _key: value._key}
+                setSelectedColor(annotationValue)
+                onChange(set(annotationValue))
+              } else {
+                setSelectedColor(undefined)
+                onChange(unset())
+              }
             }}
             style={{borderTopLeftRadius: '0', borderBottomLeftRadius: '0'}}
           >
