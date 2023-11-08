@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.3.0...v1.3.1) (2023-11-08)
+
+### Bug Fixes
+
+- broken Clear button for `textColor` and `highlightColor` annotations ([ff839b8](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/ff839b8156170d1b0a1d97c3df075a3c14fdc99d))
+
 ## [1.3.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.2.1...v1.3.0) (2023-11-08)
 
 ### Features
