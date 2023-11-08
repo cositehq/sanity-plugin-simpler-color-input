@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.2.1...v1.3.0) (2023-11-08)
+
+### Features
+
+- add `defaultColorList` and `defaultEnableAlpha` properties to plugin config ([1072739](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/1072739821ad7fdb5701fec9e314cc79d9b8947f))
+
 ## [1.2.1](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.2.0...v1.2.1) (2023-11-07)
 
 ### Bug Fixes
