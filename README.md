@@ -98,7 +98,7 @@ Or you can use the `textColor` and `highlightColor` types to annotate text in th
       // ...,
       {
         type: 'textColor',
-      };
+      },
     ],
   }
 }
@@ -115,7 +115,7 @@ Or you can use the `textColor` and `highlightColor` types to annotate text in th
       // ...,
       {
         type: 'highlightColor',
-      };
+      },
     ],
   }
 }
