@@ -6,7 +6,7 @@
       <p>Created by <a href="https://github.com/AlyssaKirstine">@AlyssaKirstine</a></p>
   </div>
 
-![Color input dropdown](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/7f6177d76e22aa81e9bb83e813d5279e7f327545/assets/allow-custom-value.png)
+![Color input dropdown](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/allow-custom-value.png)
 
 
 ## 🤩 Features
@@ -85,7 +85,7 @@ You can use the `simplerColor` type in your schema types:
 
 Or you can use the `textColor` and `highlightColor` types to annotate text in the Portable Text editor:
 
-![Portable text editor example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/4b850d94f53f38dca0b83b233dbf65d7a0e1d058/assets/portable-text-editor.png)
+![Portable text editor example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/portable-text-editor.png)
 
 #### Text Color
 
@@ -166,7 +166,7 @@ To add list of predefined selectable color swatches for the user to choose from 
 
 Which will render accordingly:
 
-![Color List example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/7f6177d76e22aa81e9bb83e813d5279e7f327545/assets/color-list.png)
+![Color List example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/color-list.png)
 
 ### Allow Custom Values
 
@@ -192,8 +192,8 @@ To allow custom color values, add an array item to `colorList` with its value se
 
 Which will render accordingly:
 
-![Allow custom value example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/7f6177d76e22aa81e9bb83e813d5279e7f327545/assets/allow-custom-value.png)
-![Color picker](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/7f6177d76e22aa81e9bb83e813d5279e7f327545/assets/color-picker.png)
+![Allow custom value example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/allow-custom-value.png)
+![Color picker](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/color-picker.png)
 
 **Note:** custom color values will automatically be enabled if no color list is specified.
 
@@ -217,7 +217,7 @@ To add alpha slider and options to custom color picker, set `enableAlpha` to `tr
 
 Which will render accordingly:
 
-![Enable alpha example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/7f6177d76e22aa81e9bb83e813d5279e7f327545/assets/enable-alpha.png)
+![Enable alpha example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/enable-alpha.png)
 
 ## 📚 Data model
 
