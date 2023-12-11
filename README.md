@@ -48,7 +48,7 @@ export default defineConfig({
   plugins: [
     simplerColorInput({
       // Note: These are both optional
-      defaultEnableAlpha: true,
+      defaultColorFormat: 'rgba',
       defaultColorList: [
         { label: 'Light', value: '#ffffff' },
         { label: 'Dark', value: '#333333' },
@@ -61,7 +61,7 @@ export default defineConfig({
 })
 ```
 
-Learn more about the `colorList` and `enableAlpha` properties in the [Options](#color-list) section.
+Learn more about the `colorList` and `colorFormat` properties in the [Options](#color-list) section.
 
 ### Use as a Standalone Field
 
@@ -197,20 +197,20 @@ Which will render accordingly:
 
 **Note:** custom color values will automatically be enabled if no color list is specified.
 
-### Enable Alpha Slider
+### Custom Color Format
 
-To add alpha slider and options to custom color picker, set `enableAlpha` to `true`.
+The default color format that will be outputted by the color picker is `hex`. To change this, set `colorFormat` to any of the following values: `hex`, `hexa`, `rgb`, `rgba`, `hsl`, or `hsla`.
 
-**Note:** this will take precedence over the value of `defaultEnableAlpha` in the plugin config.
+**Note:** this will take precedence over the value of `defaultColorFormat` in the plugin config.
 
 ```js
 // ...fields...
 {
   name: 'backgroundColor',
-  title: 'Background Color with Alpha Slider',
+  title: 'Background Color with RGBA Format',
   type: 'simplerColor', // or textColor or highlightColor
   options: {
-    enableAlpha: true,
+    colorFormat: 'rgba',
   }
 }
 ```
@@ -218,6 +218,10 @@ To add alpha slider and options to custom color picker, set `enableAlpha` to `tr
 Which will render accordingly:
 
 ![Enable alpha example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/enable-alpha.png)
+
+**What happened to the `enableAlpha` option?**
+
+This option was removed in favor of the more precise `colorFormat` setting. The alpha slider will be enabled when the `colorFormat` is set to `hexa`, `rgba` or `hsla`.
 
 ## 📚 Data model
 

@@ -2,9 +2,8 @@ import {ChevronDownIcon} from '@sanity/icons'
 import {Box, Button, Card, Container, Flex, Inline, Popover, Stack, Text} from '@sanity/ui'
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {ObjectInputProps, ObjectOptions, ObjectSchemaType, set, unset} from 'sanity'
-import {ChromePicker, RGBColor} from 'react-color'
 import {CloseIcon} from '@sanity/icons'
-import styled from 'styled-components'
+import {Chrome, ColorResult, HsvaColor, hslStringToHsva, rgbStringToHsva} from '@uiw/react-color'
 
 export interface SimplerColorType {
   label: string
@@ -13,11 +12,13 @@ export interface SimplerColorType {
   _key?: string // included in textColor and highlightColor annotation types
 }
 
+export type ColorFormatType = 'hex' | 'hexa' | 'rgb' | 'rgba' | 'hsl' | 'hsla'
+
 export interface ColorOptions extends Omit<ObjectOptions, 'columns'> {
   colorList?: Array<SimplerColorType>
-  enableAlpha?: boolean
+  colorFormat?: ColorFormatType
   defaultColorList?: Array<SimplerColorType>
-  defaultEnableAlpha?: boolean
+  defaultColorFormat?: ColorFormatType
 }
 
 export type SimplerColorSchemaType = Omit<ObjectSchemaType, 'options'> & {
@@ -43,25 +44,41 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
   )
 
   const colorList = type.options?.colorList || type.type?.options?.defaultColorList
-  const enableAlpha = type.options?.enableAlpha ?? type.type?.options?.defaultEnableAlpha
+  const colorFormat = type.options?.colorFormat ?? type.type?.options?.defaultColorFormat
 
-  const handleChange2 = (color: {rgb: RGBColor}) => {
-    const {r, g, b, a} = color.rgb
-    const rgb = `rgb(${r}, ${g}, ${b})`
-    const rgba = `rgba(${r}, ${g}, ${b}, ${a})`
-    const formattedColor = {
-      label: 'Custom',
-      value: enableAlpha ? rgba : rgb,
+  const handlePickerChange = (color: ColorResult) => {
+    let colorValue: string
+
+    switch (colorFormat) {
+      case 'hexa':
+        colorValue = color.hexa
+        break
+      case 'rgb':
+        colorValue = `rgb(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b})`
+        break
+      case 'rgba':
+        colorValue = `rgba(${color.rgba.r}, ${color.rgba.g}, ${
+          color.rgba.b
+        }, ${color.rgba.a.toFixed(2)})`
+        break
+      case 'hsl':
+        colorValue = `hsl(${color.hsl.h.toFixed(0)}, ${color.hsl.s.toFixed(
+          0
+        )}%, ${color.hsl.l.toFixed(0)}%)`
+        break
+      case 'hsla':
+        colorValue = `hsla(${color.hsla.h.toFixed(0)}, ${color.hsla.s.toFixed(
+          0
+        )}%, ${color.hsla.l.toFixed(0)}%, ${color.hsla.a.toFixed(2)})`
+        break
+      default:
+        colorValue = color.hex
+        break
     }
-    setSelectedColor(formattedColor)
-  }
-  const handleChangeComplete = (color: {rgb: RGBColor}) => {
-    const {r, g, b, a} = color.rgb
-    const rgb = `rgb(${r}, ${g}, ${b})`
-    const rgba = `rgba(${r}, ${g}, ${b}, ${a})`
+
     const formattedColor = {
       label: 'Custom',
-      value: enableAlpha ? rgba : rgb,
+      value: colorValue,
     }
     setSelectedColor(formattedColor)
     onChange(set({...props.value, ...formattedColor}))
@@ -81,30 +98,16 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
     }
   }, [isOpen, pickerIsOpen, ref])
 
-  const ChromePickerWrapper = styled.div`
-    .chrome-picker {
-      background: inherit !important;
-    }
-
-    input {
-      color: inherit !important;
-    }
-  `
+  // convert rgb and hsl strings to hsva so they can be read by the picker successfully
+  let pickerColor: string | HsvaColor = selectedColor?.value || '#ffffff'
+  if (pickerColor.startsWith('rgb')) pickerColor = rgbStringToHsva(pickerColor)
+  else if (pickerColor.startsWith('hsl')) pickerColor = hslStringToHsva(pickerColor)
 
   return (
     <Container>
       <Popover
         ref={ref}
-        content={
-          <ChromePickerWrapper>
-            <ChromePicker
-              onChange={handleChange2}
-              onChangeComplete={handleChangeComplete}
-              color={selectedColor?.value}
-              disableAlpha={!enableAlpha}
-            />
-          </ChromePickerWrapper>
-        }
+        content={<Chrome onChange={handlePickerChange} color={pickerColor} />}
         portal
         open={pickerIsOpen}
       >

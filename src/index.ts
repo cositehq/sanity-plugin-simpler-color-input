@@ -2,10 +2,11 @@ import {definePlugin} from 'sanity'
 import {simplerColor} from './schemas/simplerColor'
 import {textColor} from './schemas/textColor'
 import {highlightColor} from './schemas/highlightColor'
+import {ColorFormatType} from './ColorInput'
 
 interface SimplerColorInputConfig {
   defaultColorList?: Array<{label: string; value: string}>
-  defaultEnableAlpha?: boolean
+  defaultColorFormat?: ColorFormatType // defaults to 'hex'
 }
 
 /**
