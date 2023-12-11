@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.3.1...v2.0.0) (2023-12-11)
+
+### ⚠ BREAKING CHANGES
+
+- replace `enableAlpha` option with customizable `colorFormat` option, default to hex format
+
+### Features
+
+- replace `enableAlpha` option with customizable `colorFormat` option, default to hex format ([d3731d3](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/d3731d3c92cd7d0d257611d7c8789040c6addd16))
+
 ## [1.3.1](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.3.0...v1.3.1) (2023-11-08)
 
 ### Bug Fixes
