@@ -103,6 +103,9 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
   if (pickerColor.startsWith('rgb')) pickerColor = rgbStringToHsva(pickerColor)
   else if (pickerColor.startsWith('hsl')) pickerColor = hslStringToHsva(pickerColor)
 
+  /* @ts-expect-error */
+  const isRequired: boolean = type.validation[0]._required === 'required'
+
   return (
     <Container>
       <Popover
@@ -116,8 +119,8 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
             style={{
               width: '100%',
               textAlign: 'center',
-              borderTopRightRadius: '0',
-              borderBottomRightRadius: '0',
+              borderTopRightRadius: isRequired ? '' : '0',
+              borderBottomRightRadius: isRequired ? '' : '0',
             }}
             mode="ghost"
             padding={2}
@@ -144,27 +147,29 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
               <ChevronDownIcon width={32} height={32} />
             </Inline>
           </Button>
-          <Button
-            mode="ghost"
-            onClick={() => {
-              if (value !== undefined && value._key) {
-                // we need to handle annotations differently to
-                // prevent errors in the Portable Text editor
-                const annotationValue = {_type: value._type, _key: value._key}
-                setSelectedColor(annotationValue)
-                onChange(set(annotationValue))
-              } else {
-                setSelectedColor(undefined)
-                onChange(unset())
-              }
-            }}
-            style={{borderTopLeftRadius: '0', borderBottomLeftRadius: '0'}}
-          >
-            <Inline space={1}>
-              <CloseIcon width={24} height={24} />
-              <Text weight="semibold">Clear</Text>
-            </Inline>
-          </Button>
+          {!isRequired && (
+            <Button
+              mode="ghost"
+              onClick={() => {
+                if (value !== undefined && value._key) {
+                  // we need to handle annotations differently to
+                  // prevent errors in the Portable Text editor
+                  const annotationValue = {_type: value._type, _key: value._key}
+                  setSelectedColor(annotationValue)
+                  onChange(set(annotationValue))
+                } else {
+                  setSelectedColor(undefined)
+                  onChange(unset())
+                }
+              }}
+              style={{borderTopLeftRadius: '0', borderBottomLeftRadius: '0'}}
+            >
+              <Inline space={1}>
+                <CloseIcon width={24} height={24} />
+                <Text weight="semibold">Clear</Text>
+              </Inline>
+            </Button>
+          )}
         </Flex>
       </Popover>
       {isOpen && colorList && (
