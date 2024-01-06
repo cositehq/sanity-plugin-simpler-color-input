@@ -86,7 +86,8 @@
   },
   "peerDependencies": {
     "react": "^18",
-    "sanity": "^3"
+    "sanity": "^3",
+    "@sanity/ui": "^1.0 || ^2.0.0-beta"
   },
   "engines": {
     "node": ">=14"
