@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v2.0.0...v2.1.0) (2024-01-06)
+
+### Features
+
+- hide Clear button when field is required ([f2465b4](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/f2465b4e17e250a2972444730684e72d5c3d9f97))
+
+### Bug Fixes
+
+- support latest `@sanity/ui` ([4ee8f48](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/4ee8f4846acd5028e212e213d4f9cc1e0016bf5e))
+
 ## [2.0.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v1.3.1...v2.0.0) (2023-12-11)
 
 ### ⚠ BREAKING CHANGES
