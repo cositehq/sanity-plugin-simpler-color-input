@@ -1,9 +1,27 @@
-import {ChevronDownIcon} from '@sanity/icons'
-import {Box, Button, Card, Container, Flex, Inline, Popover, Stack, Text} from '@sanity/ui'
+import {ChevronDownIcon, SearchIcon} from '@sanity/icons'
+import {
+  Box,
+  Button,
+  Card,
+  Container,
+  Flex,
+  Inline,
+  Popover,
+  Stack,
+  Text,
+  TextInput,
+} from '@sanity/ui'
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {ObjectInputProps, ObjectOptions, ObjectSchemaType, set, unset} from 'sanity'
 import {CloseIcon} from '@sanity/icons'
-import {Chrome, ColorResult, HsvaColor, hslStringToHsva, rgbStringToHsva} from '@uiw/react-color'
+// https://github.com/uiwjs/react-color/issues/104
+import {
+  Chrome,
+  ColorResult,
+  HsvaColor,
+  hslStringToHsva,
+  rgbStringToHsva,
+} from '@uiw/react-color/src/index'
 
 export interface SimplerColorType {
   label: string
@@ -19,6 +37,7 @@ export interface ColorOptions extends Omit<ObjectOptions, 'columns'> {
   colorFormat?: ColorFormatType
   defaultColorList?: Array<SimplerColorType>
   defaultColorFormat?: ColorFormatType
+  enableSearch?: boolean
 }
 
 export type SimplerColorSchemaType = Omit<ObjectSchemaType, 'options'> & {
@@ -29,6 +48,7 @@ export type SimplerColorInputProps = ObjectInputProps<SimplerColorType, SimplerC
 export const SimplerColorInput = (props: ObjectInputProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [pickerIsOpen, setPickerIsOpen] = useState(false)
+  const [searchValue, setSearchValue] = useState('')
   const {onChange} = props
   const value = props.value as SimplerColorType | undefined
   const type = props.schemaType as SimplerColorSchemaType
@@ -43,8 +63,16 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
     [onChange, props.value]
   )
 
-  const colorList = type.options?.colorList || type.type?.options?.defaultColorList
+  const colorList: SimplerColorType[] =
+    type.options?.colorList || type.type?.options?.defaultColorList
   const colorFormat = type.options?.colorFormat ?? type.type?.options?.defaultColorFormat
+  const enableSearch = Boolean(type.options?.enableSearch ?? type.type?.options?.enableSearch)
+
+  const filteredColorList = searchValue.length
+    ? colorList?.filter((color) => {
+        return color.label.toLowerCase().includes(searchValue.toLowerCase())
+      })
+    : colorList
 
   const handlePickerChange = (color: ColorResult) => {
     let colorValue: string
@@ -86,6 +114,8 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
 
   const ref: React.RefObject<HTMLDivElement> = useRef(null)
   useEffect(() => {
+    if (!isOpen) setSearchValue('')
+
     const handleClickOutside = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
         setPickerIsOpen(false)
@@ -174,8 +204,26 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
       </Popover>
       {isOpen && colorList && (
         <Card radius={2} shadow={3} marginTop={1} overflow="hidden">
+          {enableSearch && (
+            <Box
+              padding={3}
+              style={{
+                borderBottom: '1px solid var(--card-border-color)',
+              }}
+            >
+              <TextInput
+                icon={SearchIcon}
+                radius={2}
+                placeholder="Search"
+                onChange={(event) => {
+                  setSearchValue(event.currentTarget.value)
+                }}
+                autoFocus
+              />
+            </Box>
+          )}
           <Stack>
-            {colorList?.map((color: SimplerColorType) =>
+            {filteredColorList?.map((color: SimplerColorType) =>
               color.value === 'custom' ? (
                 <Button
                   key={color.label}

@@ -47,7 +47,7 @@ export default defineConfig({
   //...
   plugins: [
     simplerColorInput({
-      // Note: These are both optional
+      // Note: These are all optional
       defaultColorFormat: 'rgba',
       defaultColorList: [
         { label: 'Light', value: '#ffffff' },
@@ -56,6 +56,7 @@ export default defineConfig({
         { label: 'Accent', value: '#626754' },
         { label: 'Custom...', value: 'custom' },
       ],
+      enableSearch: true,
     })
   ],
 })
@@ -186,6 +187,22 @@ To allow custom color values, add an array item to `colorList` with its value se
       { label: 'Accent', value: '#626754' },
       { label: 'Custom...', value: 'custom' },
     ],
+  }
+}
+```
+
+### Enable Search
+
+To enable search in the color picker, set `enableSearch` to `true`.
+
+```js
+// ...fields...
+{
+  name: 'backgroundColor',
+  title: 'Background Color with Search',
+  type: 'simplerColor', // or textColor or highlightColor
+  options: {
+    enableSearch: true,
   }
 }
 ```
