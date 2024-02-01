@@ -7,6 +7,7 @@ import {ColorFormatType} from './ColorInput'
 interface SimplerColorInputConfig {
   defaultColorList?: Array<{label: string; value: string}>
   defaultColorFormat?: ColorFormatType // defaults to 'hex'
+  enableSearch?: boolean // defaults to false
 }
 
 /**
