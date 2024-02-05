@@ -144,7 +144,7 @@ This can be adapted to fit the framework you're using. You just need to know tha
 
 ### Color list
 
-To add list of predefined selectable color swatches for the user to choose from use `colorList`. Supports hexadecimal, RGB, or HSL color values. See [legal CSS color values](https://www.w3schools.com/cssref/css_colors_legal.php) for specification.
+To add a list of predefined selectable color swatches for the user to choose from use `colorList`. Supports hexadecimal, RGB, or HSL color values. See [legal CSS color values](https://www.w3schools.com/cssref/css_colors_legal.php) for specification.
 
 **Note:** this will take precedence over the value of `defaultColorList` in the plugin options.
 
@@ -191,6 +191,13 @@ To allow custom color values, add an array item to `colorList` with its value se
 }
 ```
 
+Which will render accordingly:
+
+![Allow custom value example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/allow-custom-value.png)
+![Color picker](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/color-picker.png)
+
+**Note:** custom color values will automatically be enabled if no color list is specified.
+
 ### Enable Search
 
 To enable search in the color picker, set `enableSearch` to `true`.
@@ -209,10 +216,9 @@ To enable search in the color picker, set `enableSearch` to `true`.
 
 Which will render accordingly:
 
-![Allow custom value example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/allow-custom-value.png)
-![Color picker](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/color-picker.png)
+![Enable search example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/enable-search.png)
 
-**Note:** custom color values will automatically be enabled if no color list is specified.
+![Enable search with input example](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/enable-search-with-input.png)
 
 ### Custom Color Format
 
