@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v2.1.0...v2.2.0) (2024-02-05)
+
+### Features
+
+- add search input ([75adc1f](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/75adc1fa6def344740050aabc96b890c4025390c))
+
 ## [2.1.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v2.0.0...v2.1.0) (2024-01-06)
 
 ### Features
