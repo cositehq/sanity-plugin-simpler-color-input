@@ -14,14 +14,7 @@ import {
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {ObjectInputProps, ObjectOptions, ObjectSchemaType, set, unset} from 'sanity'
 import {CloseIcon} from '@sanity/icons'
-// https://github.com/uiwjs/react-color/issues/104
-import {
-  Chrome,
-  ColorResult,
-  HsvaColor,
-  hslStringToHsva,
-  rgbStringToHsva,
-} from '@uiw/react-color/src/index'
+import {Chrome, ColorResult, HsvaColor, hslStringToHsva, rgbStringToHsva} from '@uiw/react-color'
 
 export interface SimplerColorType {
   label: string
