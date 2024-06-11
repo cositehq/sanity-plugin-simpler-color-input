@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v2.2.1...v2.2.2) (2024-06-11)
+
+### Bug Fixes
+
+- @uiw/react-color window is not defined ([d598f60](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/d598f6008ba651b2d63b4768357bada6d20a97c5))
+
 ## [2.2.1](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v2.2.0...v2.2.1) (2024-02-24)
 
 ### Bug Fixes
