@@ -14,7 +14,7 @@ import {
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {ObjectInputProps, ObjectOptions, ObjectSchemaType, set, unset} from 'sanity'
 import {CloseIcon} from '@sanity/icons'
-import {Chrome, ColorResult, HsvaColor, hslStringToHsva, rgbStringToHsva} from '@uiw/react-color'
+import {ColorResult, HsvaColor} from '@uiw/react-color'
 
 export interface SimplerColorType {
   label: string
@@ -121,137 +121,153 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
     }
   }, [isOpen, pickerIsOpen, ref])
 
-  // convert rgb and hsl strings to hsva so they can be read by the picker successfully
-  let pickerColor: string | HsvaColor = selectedColor?.value || '#ffffff'
-  if (pickerColor.startsWith('rgb')) pickerColor = rgbStringToHsva(pickerColor)
-  else if (pickerColor.startsWith('hsl')) pickerColor = hslStringToHsva(pickerColor)
-
   /* @ts-expect-error */
   const isRequired: boolean = type.validation[0]._required === 'required'
 
-  return (
-    <Container>
-      <Popover
-        ref={ref}
-        content={<Chrome onChange={handlePickerChange} color={pickerColor} />}
-        portal
-        open={pickerIsOpen}
-      >
-        <Flex>
-          <Button
-            style={{
-              width: '100%',
-              textAlign: 'center',
-              borderTopRightRadius: isRequired ? '' : '0',
-              borderBottomRightRadius: isRequired ? '' : '0',
-            }}
-            mode="ghost"
-            padding={2}
-            onClick={() =>
-              colorList && colorList.length > 0
-                ? setIsOpen(!isOpen)
-                : setPickerIsOpen(!pickerIsOpen)
-            }
-          >
-            <Inline space={4}>
-              <Inline space={1}>
-                <Box>
-                  <Card
-                    style={{backgroundColor: selectedColor?.value || '#ffffff'}}
-                    radius={2}
-                    shadow={1}
-                    padding={2}
-                    margin={1}
-                  />
-                </Box>
-                <Text weight="semibold">{selectedColor?.label || 'Select a color...'} </Text>
-                <Text>{selectedColor?.value}</Text>
-              </Inline>
-              <ChevronDownIcon width={32} height={32} />
-            </Inline>
-          </Button>
-          {!isRequired && (
-            <Button
-              mode="ghost"
-              onClick={() => {
-                if (value !== undefined && value._key) {
-                  // we need to handle annotations differently to
-                  // prevent errors in the Portable Text editor
-                  const annotationValue = {_type: value._type, _key: value._key}
-                  setSelectedColor(annotationValue)
-                  onChange(set(annotationValue))
-                } else {
-                  setSelectedColor(undefined)
-                  onChange(unset())
-                }
-              }}
-              style={{borderTopLeftRadius: '0', borderBottomLeftRadius: '0'}}
-            >
-              <Inline space={1}>
-                <CloseIcon width={24} height={24} />
-                <Text weight="semibold">Clear</Text>
-              </Inline>
-            </Button>
-          )}
-        </Flex>
-      </Popover>
-      {isOpen && colorList && (
-        <Card radius={2} shadow={3} marginTop={1} overflow="hidden">
-          {enableSearch && (
-            <Box
-              padding={3}
-              style={{
-                borderBottom: '1px solid var(--card-border-color)',
-              }}
-            >
-              <TextInput
-                icon={SearchIcon}
-                radius={2}
-                placeholder="Search"
-                onChange={(event) => {
-                  setSearchValue(event.currentTarget.value)
-                }}
-                autoFocus
+  const [Component, setComponent] = useState(<div>Loading...</div>)
+
+  useEffect(() => {
+    import('@uiw/react-color').then((module) => {
+      const {Chrome, rgbStringToHsva, hslStringToHsva} = module
+
+      // convert rgb and hsl strings to hsva so they can be read by the picker successfully
+      let pickerColor: string | HsvaColor = selectedColor?.value || '#ffffff'
+      if (pickerColor.startsWith('rgb')) pickerColor = rgbStringToHsva(pickerColor)
+      else if (pickerColor.startsWith('hsl')) pickerColor = hslStringToHsva(pickerColor)
+
+      setComponent(
+        <Container>
+          <Popover
+            ref={ref}
+            content={
+              <Chrome
+                onChange={handlePickerChange}
+                color={pickerColor}
+                showAlpha={colorFormat ? colorFormat.slice(-1) === 'a' : false}
               />
-            </Box>
-          )}
-          <Stack>
-            {filteredColorList?.map((color: SimplerColorType) =>
-              color.value === 'custom' ? (
-                <Button
-                  key={color.label}
-                  radius={0}
-                  mode="bleed"
-                  onClick={() => {
-                    setIsOpen(false)
-                    setPickerIsOpen(true)
-                  }}
-                >
-                  <Text>{color.label}</Text>
-                </Button>
-              ) : (
-                <Button
-                  key={color.label}
-                  radius={0}
-                  mode="bleed"
-                  onClick={() => handleChange(color)}
-                >
-                  <Box>
-                    <Inline space={3}>
+            }
+            portal
+            open={pickerIsOpen}
+          >
+            <Flex>
+              <Button
+                style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  borderTopRightRadius: isRequired ? '' : '0',
+                  borderBottomRightRadius: isRequired ? '' : '0',
+                }}
+                mode="ghost"
+                padding={2}
+                onClick={() =>
+                  colorList && colorList.length > 0
+                    ? setIsOpen(!isOpen)
+                    : setPickerIsOpen(!pickerIsOpen)
+                }
+              >
+                <Inline space={4}>
+                  <Inline space={1}>
+                    <Box>
                       <Card
-                        style={{backgroundColor: color.value, width: '16px', height: '16px'}}
+                        style={{backgroundColor: selectedColor?.value || '#ffffff'}}
                         radius={2}
                         shadow={1}
+                        padding={2}
+                        margin={1}
                       />
-                      <Text>{color.label}</Text>
-                    </Inline>
-                  </Box>
+                    </Box>
+                    <Text weight="semibold">{selectedColor?.label || 'Select a color...'} </Text>
+                    <Text>{selectedColor?.value}</Text>
+                  </Inline>
+                  <ChevronDownIcon width={32} height={32} />
+                </Inline>
+              </Button>
+              {!isRequired && (
+                <Button
+                  mode="ghost"
+                  onClick={() => {
+                    if (value !== undefined && value._key) {
+                      // we need to handle annotations differently to
+                      // prevent errors in the Portable Text editor
+                      const annotationValue = {_type: value._type, _key: value._key}
+                      setSelectedColor(annotationValue)
+                      onChange(set(annotationValue))
+                    } else {
+                      setSelectedColor(undefined)
+                      onChange(unset())
+                    }
+                  }}
+                  style={{borderTopLeftRadius: '0', borderBottomLeftRadius: '0'}}
+                >
+                  <Inline space={1}>
+                    <CloseIcon width={24} height={24} />
+                    <Text weight="semibold">Clear</Text>
+                  </Inline>
                 </Button>
-              )
-            )}
-          </Stack>
-        </Card>
-      )}
-    </Container>
-  )
+              )}
+            </Flex>
+          </Popover>
+          {isOpen && colorList && (
+            <Card radius={2} shadow={3} marginTop={1} overflow="hidden">
+              {enableSearch && (
+                <Box
+                  padding={3}
+                  style={{
+                    borderBottom: '1px solid var(--card-border-color)',
+                  }}
+                >
+                  <TextInput
+                    icon={SearchIcon}
+                    radius={2}
+                    placeholder="Search"
+                    onChange={(event) => {
+                      setSearchValue(event.currentTarget.value)
+                    }}
+                    autoFocus
+                  />
+                </Box>
+              )}
+              <Stack>
+                {filteredColorList?.map((color: SimplerColorType) =>
+                  color.value === 'custom' ? (
+                    <Button
+                      key={color.label}
+                      radius={0}
+                      mode="bleed"
+                      onClick={() => {
+                        setIsOpen(false)
+                        setPickerIsOpen(true)
+                      }}
+                    >
+                      <Text>{color.label}</Text>
+                    </Button>
+                  ) : (
+                    <Button
+                      key={color.label}
+                      radius={0}
+                      mode="bleed"
+                      onClick={() => handleChange(color)}
+                    >
+                      <Box>
+                        <Inline space={3}>
+                          <Card
+                            style={{backgroundColor: color.value, width: '16px', height: '16px'}}
+                            radius={2}
+                            shadow={1}
+                          />
+                          <Text>{color.label}</Text>
+                        </Inline>
+                      </Box>
+                    </Button>
+                  )
+                )}
+              </Stack>
+            </Card>
+          )}
+        </Container>
+      )
+    })
+  }, [isOpen, selectedColor, searchValue, pickerIsOpen])
+
+  return Component
 }
