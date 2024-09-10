@@ -140,6 +140,9 @@ const myPortableTextComponents = {
 
 This can be adapted to fit the framework you're using. You just need to know that the `textColor` and `highlightColor` color values are stored in the `value` property.
 
+### A Note on Sanity's Visual Editing Experience
+If you are using Sanity's Visual Editing experience, specifically their [overlays](https://www.sanity.io/docs/visual-editing-overlays) and [Stega-encoding](https://www.sanity.io/docs/stega), you will need to clean the color values before using them in your CSS. See how to do this in the discussion [here](https://github.com/cositehq/sanity-plugin-simpler-color-input/issues/11#issuecomment-2341777670).
+
 ## ⚙️ Options
 
 ### Color list
