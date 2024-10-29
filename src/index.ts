@@ -1,8 +1,9 @@
 import {definePlugin} from 'sanity'
+
+import {type ColorFormatType} from './ColorInput'
+import {highlightColor} from './schemas/highlightColor'
 import {simplerColor} from './schemas/simplerColor'
 import {textColor} from './schemas/textColor'
-import {highlightColor} from './schemas/highlightColor'
-import {ColorFormatType} from './ColorInput'
 
 interface SimplerColorInputConfig {
   defaultColorList?: Array<{label: string; value: string}>
@@ -36,5 +37,5 @@ export const simplerColorInput = definePlugin<SimplerColorInputConfig | void>((o
   }
 })
 
-export {SimplerColorInput} from './ColorInput'
 export type {SimplerColorInputProps, SimplerColorSchemaType, SimplerColorType} from './ColorInput'
+export {SimplerColorInput} from './ColorInput'

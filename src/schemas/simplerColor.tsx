@@ -1,4 +1,5 @@
 import {defineType} from 'sanity'
+
 import {SimplerColorInput} from '../ColorInput'
 
 export const simplerColor = defineType({

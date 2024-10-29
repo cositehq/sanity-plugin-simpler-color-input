@@ -1,8 +1,8 @@
-import {defineType} from 'sanity'
 import {BiHighlight} from 'react-icons/bi'
+import {defineType} from 'sanity'
 
-import {HighlightColorAnnotation} from '../HighlightColorAnnotation'
 import {SimplerColorInput} from '../ColorInput'
+import {HighlightColorAnnotation} from '../HighlightColorAnnotation'
 
 export const highlightColor = defineType({
   title: 'Highlight color',

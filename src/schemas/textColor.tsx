@@ -1,8 +1,8 @@
-import {defineType} from 'sanity'
 import {BiFontColor} from 'react-icons/bi'
+import {defineType} from 'sanity'
 
-import {TextColorAnnotation} from '../TextColorAnnotation'
 import {SimplerColorInput} from '../ColorInput'
+import {TextColorAnnotation} from '../TextColorAnnotation'
 
 export const textColor = defineType({
   title: 'Text color',

@@ -17,36 +17,36 @@
   },
   "license": "MIT",
   "author": "Alyssa Melendez <alyssa@cositehq.com>",
+  "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "source": "./src/index.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.esm.js",
-      "default": "./dist/index.esm.js"
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js",
+      "default": "./lib/index.js"
     },
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.esm.js",
-  "source": "./src/index.ts",
-  "types": "./dist/index.d.ts",
+  "main": "./lib/index.js",
+  "module": "./lib/index.esm.js",
+  "types": "./lib/index.d.ts",
   "files": [
-    "dist",
+    "lib",
     "sanity.json",
     "src",
     "v2-incompatible.js"
   ],
   "scripts": {
-    "build": "run-s clean && plugin-kit verify-package --silent && pkg-utils build --strict && pkg-utils --strict",
-    "clean": "rimraf dist",
+    "build": "plugin-kit verify-package --silent && pkg-utils build --strict --check --clean",
+    "compile": "tsc --noEmit",
     "format": "prettier --write --cache --ignore-unknown .",
     "link-watch": "plugin-kit link-watch",
     "lint": "eslint .",
-    "prepublishOnly": "run-s build",
-    "watch": "pkg-utils watch --strict",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prepublishOnly": "npm run build",
+    "watch": "pkg-utils watch --strict"
   },
+  "browserslist": "extends @sanity/browserslist-config",
   "prettier": "@sanity/prettier-config",
   "dependencies": {
     "@sanity/icons": "^3.4.0",
@@ -58,13 +58,13 @@
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "@sanity/pkg-utils": "^2.4.10",
-    "@sanity/plugin-kit": "^3.1.10",
-    "@sanity/prettier-config": "^1.0.3",
+    "@sanity/pkg-utils": "^6.11.1",
+    "@sanity/plugin-kit": "^4.0.18",
+    "@sanity/prettier-config": "1.0.3",
     "@sanity/semantic-release-preset": "^5.0.0",
     "@types/react": "^18.3.5",
     "@types/react-color": "^2.17.11",
-    "@types/styled-components": "^5.1.26",
+    "@types/react-icons": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.0",
@@ -73,14 +73,12 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.36.1",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.2",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "npm-run-all2": "^5.0.0",
     "prettier": "^3.3.3",
-    "prettier-plugin-packagejson": "^2.4.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "rimraf": "^5.0.1",
     "sanity": "^3.57.3",
     "semantic-release": "^24.1.1",
     "styled-components": "^6.1",
@@ -92,10 +90,13 @@
     "styled-components": "^6.1"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "overrides": {
+    "conventional-changelog-conventionalcommits": ">= 8.0.0"
   },
   "sanityExchangeUrl": "https://www.sanity.io/plugins/sanity-plugin-simpler-color-input"
 }

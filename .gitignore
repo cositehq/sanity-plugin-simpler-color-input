@@ -57,5 +57,5 @@ yalc.lock
 *.tgz
 
 # Compiled plugin
-dist
+lib
 tsconfig.tsbuildinfo

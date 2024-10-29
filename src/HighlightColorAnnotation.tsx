@@ -1,4 +1,4 @@
-import {BlockAnnotationProps} from 'sanity'
+import {type BlockAnnotationProps} from 'sanity'
 import styled from 'styled-components'
 
 const ColorSpan = styled.span<{color: string}>`
@@ -10,7 +10,7 @@ const ColorSpan = styled.span<{color: string}>`
 `
 
 export const HighlightColorAnnotation = (props: BlockAnnotationProps) => (
-  <ColorSpan color={(props.value?.value as unknown as string) || ''}>
+  <ColorSpan color={(props.value?.['value'] as unknown as string) || ''}>
     {props.renderDefault(props)}
   </ColorSpan>
 )
