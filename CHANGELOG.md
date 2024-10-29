@@ -10,19 +10,15 @@ All notable changes to this project will be documented in this file. See
 ### ⚠ BREAKING CHANGES
 
 - migrate to v6 pkg-utils best practice
-- dependency updates
+- **deps**: `styled-components` v6.1 or later is now required
 
 ### Features
 
 - migrate to v6 pkg-utils best practice ([e8adbc2](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/e8adbc29cefcb3dd083e36d3941b5962a4411eab))
 
-### Bug Fixes
-
-- downgrade semantic-release version ([7443ff9](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/7443ff9c49049e962773111f478b557d0a0599f3))
-
 ### Miscellaneous Chores
 
-- dependency updates ([9e993ce](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/9e993cef928d9007aac92c7dd71e339fa9804fc1))
+- dependency updates ([9e993ce](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/9e993cef928d9007aac92c7dd71e339fa9804fc1), [7443ff9](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/7443ff9c49049e962773111f478b557d0a0599f3))
 
 ## [2.2.2](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v2.2.1...v2.2.2) (2024-06-11)
 
