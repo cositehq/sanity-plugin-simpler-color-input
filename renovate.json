@@ -1,6 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ]
+  "extends": ["github>sanity-io/renovate-config", "github>sanity-io/renovate-config:studio-v3"]
 }
