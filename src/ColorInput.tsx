@@ -1,4 +1,5 @@
 import {ChevronDownIcon, SearchIcon} from '@sanity/icons'
+import {CloseIcon} from '@sanity/icons'
 import {
   Box,
   Button,
@@ -11,10 +12,9 @@ import {
   Text,
   TextInput,
 } from '@sanity/ui'
-import React, {useCallback, useEffect, useRef, useState} from 'react'
-import {ObjectInputProps, ObjectOptions, ObjectSchemaType, set, unset} from 'sanity'
-import {CloseIcon} from '@sanity/icons'
 import {ColorResult, HsvaColor} from '@uiw/react-color'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
+import {type ObjectInputProps, type ObjectOptions, type ObjectSchemaType, set, unset} from 'sanity'
 
 export interface SimplerColorType {
   label: string
@@ -53,7 +53,7 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
       setIsOpen(false)
       onChange(set({...props.value, ...color}))
     },
-    [onChange, props.value]
+    [onChange, props.value],
   )
 
   const colorList: SimplerColorType[] =
@@ -84,12 +84,12 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
         break
       case 'hsl':
         colorValue = `hsl(${color.hsl.h.toFixed(0)}, ${color.hsl.s.toFixed(
-          0
+          0,
         )}%, ${color.hsl.l.toFixed(0)}%)`
         break
       case 'hsla':
         colorValue = `hsla(${color.hsla.h.toFixed(0)}, ${color.hsla.s.toFixed(
-          0
+          0,
         )}%, ${color.hsla.l.toFixed(0)}%, ${color.hsla.a.toFixed(2)})`
         break
       default:
@@ -121,7 +121,7 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
     }
   }, [isOpen, pickerIsOpen, ref])
 
-  /* @ts-expect-error */
+  /* @ts-expect-error we can assume type exists */
   const isRequired: boolean = type.validation[0]._required === 'required'
 
   const [Component, setComponent] = useState(<div>Loading...</div>)
@@ -259,12 +259,12 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
                         </Inline>
                       </Box>
                     </Button>
-                  )
+                  ),
                 )}
               </Stack>
             </Card>
           )}
-        </Container>
+        </Container>,
       )
     })
   }, [isOpen, selectedColor, searchValue, pickerIsOpen])
