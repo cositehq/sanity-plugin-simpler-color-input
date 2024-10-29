@@ -51,20 +51,19 @@
   "dependencies": {
     "@sanity/icons": "^3.4.0",
     "@sanity/incompatible-plugin": "^1.0.4",
-    "@sanity/ui": "^2.8.9",
+    "@sanity/ui": "^2.8.13",
     "@uiw/react-color": "^2.3.0",
     "react-icons": "^5.3.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "@sanity/pkg-utils": "^6.11.1",
+    "@sanity/pkg-utils": "^6.11.7",
     "@sanity/plugin-kit": "^4.0.18",
     "@sanity/prettier-config": "1.0.3",
     "@sanity/semantic-release-preset": "^5.0.0",
-    "@types/react": "^18.3.5",
+    "@types/react": "^18.3.12",
     "@types/react-color": "^2.17.11",
-    "@types/react-icons": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.0",
@@ -79,10 +78,10 @@
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sanity": "^3.57.3",
-    "semantic-release": "^24.1.1",
-    "styled-components": "^6.1",
-    "typescript": "^5.6.2"
+    "sanity": "^3.62.3",
+    "semantic-release": "^24.2.0",
+    "styled-components": "^6.1.13",
+    "typescript": "^5.6.3"
   },
   "peerDependencies": {
     "react": "^18.3",
