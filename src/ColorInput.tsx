@@ -177,7 +177,15 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
                       />
                     </Box>
                     <Text weight="semibold">{selectedColor?.label || 'Select a color...'} </Text>
-                    <Text>{selectedColor?.value}</Text>
+                    <Text
+                      style={{
+                        maxWidth: '100px',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}
+                    >
+                      {selectedColor?.value}
+                    </Text>
                   </Inline>
                   <ChevronDownIcon width={32} height={32} />
                 </Inline>
