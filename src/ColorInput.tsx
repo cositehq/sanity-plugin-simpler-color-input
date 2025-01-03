@@ -156,6 +156,8 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
                   textAlign: 'center',
                   borderTopRightRadius: isRequired ? '' : '0',
                   borderBottomRightRadius: isRequired ? '' : '0',
+                  flexShrink: 1,
+                  overflow: 'hidden',
                 }}
                 mode="ghost"
                 padding={2}
@@ -165,9 +167,9 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
                     : setPickerIsOpen(!pickerIsOpen)
                 }
               >
-                <Inline space={4}>
-                  <Inline space={1}>
-                    <Box>
+                <Flex style={{width: '100%'}} gap={4}>
+                  <Flex style={{overflow: 'hidden', flexGrow: 1}} align="center" gap={1}>
+                    <Box style={{flexShrink: 0}}>
                       <Card
                         style={{backgroundColor: selectedColor?.value || '#ffffff'}}
                         radius={2}
@@ -176,19 +178,15 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
                         margin={1}
                       />
                     </Box>
-                    <Text weight="semibold">{selectedColor?.label || 'Select a color...'} </Text>
-                    <Text
-                      style={{
-                        maxWidth: '100px',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}
-                    >
-                      {selectedColor?.value}
+                    <Text style={{flexShrink: 0}} weight="semibold">
+                      {selectedColor?.label || 'Select a color...'}{' '}
                     </Text>
-                  </Inline>
-                  <ChevronDownIcon width={32} height={32} />
-                </Inline>
+                    <Box style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                      {selectedColor?.value}
+                    </Box>
+                  </Flex>
+                  <ChevronDownIcon style={{flexShrink: 0}} width={32} height={32} />
+                </Flex>
               </Button>
               {!isRequired && (
                 <Button
