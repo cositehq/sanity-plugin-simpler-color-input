@@ -8,7 +8,6 @@
 
 ![Color input dropdown](https://raw.githubusercontent.com/cositehq/sanity-plugin-simpler-color-input/main/assets/allow-custom-value.png)
 
-
 ## 🤩 Features
 
 ✓ Sanity v3 support
@@ -57,6 +56,7 @@ export default defineConfig({
         { label: 'Custom...', value: 'custom' },
       ],
       enableSearch: true,
+      showColorValue: true,
     })
   ],
 })
@@ -141,6 +141,7 @@ const myPortableTextComponents = {
 This can be adapted to fit the framework you're using. You just need to know that the `textColor` and `highlightColor` color values are stored in the `value` property.
 
 ### A Note on Sanity's Visual Editing Experience
+
 If you are using Sanity's Visual Editing experience, specifically their [overlays](https://www.sanity.io/docs/visual-editing-overlays) and [Stega-encoding](https://www.sanity.io/docs/stega), you will need to clean the color values before using them in your CSS. See how to do this in the discussion [here](https://github.com/cositehq/sanity-plugin-simpler-color-input/issues/11#issuecomment-2341777670).
 
 ## ⚙️ Options
@@ -249,6 +250,22 @@ Which will render accordingly:
 
 This option was removed in favor of the more precise `colorFormat` setting. The alpha slider will be enabled when the `colorFormat` is set to `hexa`, `rgba` or `hsla`.
 
+### Color Value Showing
+
+By default, the library show the color value in the input field. If you want to hide it, you can set `showColorValue` to `false`.
+
+```js
+// ...fields...
+{
+  name: 'backgroundColor',
+  title: 'Background Color with Search',
+  type: 'simplerColor', // or textColor or highlightColor
+  options: {
+    showColorValue: false,
+  }
+}
+```
+
 ## 📚 Data model
 
 ```js
@@ -274,7 +291,6 @@ with default configuration for build & watch scripts.
 
 See [Testing a plugin in Sanity Studio](https://github.com/sanity-io/plugin-kit#testing-a-plugin-in-sanity-studio)
 on how to run this plugin with hotreload in the studio.
-
 
 ### Release new version
 

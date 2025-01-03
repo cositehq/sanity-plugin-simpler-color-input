@@ -31,6 +31,7 @@ export interface ColorOptions extends Omit<ObjectOptions, 'columns'> {
   defaultColorList?: Array<SimplerColorType>
   defaultColorFormat?: ColorFormatType
   enableSearch?: boolean
+  showColorValue?: boolean
 }
 
 export type SimplerColorSchemaType = Omit<ObjectSchemaType, 'options'> & {
@@ -45,6 +46,7 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
   const {onChange} = props
   const value = props.value as SimplerColorType | undefined
   const type = props.schemaType as SimplerColorSchemaType
+  const showColorValue = Boolean(type.options?.showColorValue ?? true)
   const [selectedColor, setSelectedColor] = useState<Partial<SimplerColorType> | undefined>(value)
 
   const handleChange = useCallback(
@@ -156,6 +158,8 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
                   textAlign: 'center',
                   borderTopRightRadius: isRequired ? '' : '0',
                   borderBottomRightRadius: isRequired ? '' : '0',
+                  flexShrink: 1,
+                  overflow: 'hidden',
                 }}
                 mode="ghost"
                 padding={2}
@@ -165,9 +169,9 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
                     : setPickerIsOpen(!pickerIsOpen)
                 }
               >
-                <Inline space={4}>
-                  <Inline space={1}>
-                    <Box>
+                <Flex style={{width: '100%'}} gap={4}>
+                  <Flex style={{overflow: 'hidden', flexGrow: 1}} align="center" gap={1}>
+                    <Box style={{flexShrink: 0}}>
                       <Card
                         style={{backgroundColor: selectedColor?.value || '#ffffff'}}
                         radius={2}
@@ -176,11 +180,24 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
                         margin={1}
                       />
                     </Box>
-                    <Text weight="semibold">{selectedColor?.label || 'Select a color...'} </Text>
-                    <Text>{selectedColor?.value}</Text>
-                  </Inline>
-                  <ChevronDownIcon width={32} height={32} />
-                </Inline>
+                    <Box
+                      style={{
+                        fontWeight: 600,
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        ...(showColorValue && {flexShrink: 0}),
+                      }}
+                    >
+                      {selectedColor?.label || 'Select a color...'}{' '}
+                    </Box>
+                    {showColorValue && (
+                      <Box style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                        {selectedColor?.value}
+                      </Box>
+                    )}
+                  </Flex>
+                  <ChevronDownIcon style={{flexShrink: 0}} width={32} height={32} />
+                </Flex>
               </Button>
               {!isRequired && (
                 <Button
