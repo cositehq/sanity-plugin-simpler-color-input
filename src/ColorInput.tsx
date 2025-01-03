@@ -31,6 +31,7 @@ export interface ColorOptions extends Omit<ObjectOptions, 'columns'> {
   defaultColorList?: Array<SimplerColorType>
   defaultColorFormat?: ColorFormatType
   enableSearch?: boolean
+  showColorValue?: boolean
 }
 
 export type SimplerColorSchemaType = Omit<ObjectSchemaType, 'options'> & {
@@ -45,6 +46,7 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
   const {onChange} = props
   const value = props.value as SimplerColorType | undefined
   const type = props.schemaType as SimplerColorSchemaType
+  const showColorValue = Boolean(type.options?.showColorValue ?? true)
   const [selectedColor, setSelectedColor] = useState<Partial<SimplerColorType> | undefined>(value)
 
   const handleChange = useCallback(
@@ -178,12 +180,21 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
                         margin={1}
                       />
                     </Box>
-                    <Text style={{flexShrink: 0}} weight="semibold">
+                    <Box
+                      style={{
+                        fontWeight: 600,
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        ...(showColorValue && {flexShrink: 0}),
+                      }}
+                    >
                       {selectedColor?.label || 'Select a color...'}{' '}
-                    </Text>
-                    <Box style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                      {selectedColor?.value}
                     </Box>
+                    {showColorValue && (
+                      <Box style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                        {selectedColor?.value}
+                      </Box>
+                    )}
                   </Flex>
                   <ChevronDownIcon style={{flexShrink: 0}} width={32} height={32} />
                 </Flex>
