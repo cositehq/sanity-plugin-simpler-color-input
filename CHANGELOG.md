@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v3.0.0...v3.0.1) (2025-02-26)
+
+### Bug Fixes
+
+- support react 19 ([78237bb](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/78237bb6ed8b480ffccc34276588e999c2dfe516))
+
 ## [3.0.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v2.2.2...v3.0.0) (2024-10-29)
 
 ### ⚠ BREAKING CHANGES
