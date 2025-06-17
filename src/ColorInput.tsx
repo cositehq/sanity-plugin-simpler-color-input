@@ -169,8 +169,8 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
                     : setPickerIsOpen(!pickerIsOpen)
                 }
               >
-                <Flex style={{width: '100%'}} gap={4}>
-                  <Flex style={{overflow: 'hidden', flexGrow: 1}} align="center" gap={1}>
+                <Flex justify="center" gap={4}>
+                  <Flex align="center" gap={1} overflow="hidden">
                     <Box style={{flexShrink: 0}}>
                       <Card
                         style={{backgroundColor: selectedColor?.value || '#ffffff'}}
@@ -180,19 +180,14 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
                         margin={1}
                       />
                     </Box>
-                    <Box
-                      style={{
-                        fontWeight: 600,
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        ...(showColorValue && {flexShrink: 0}),
-                      }}
-                    >
-                      {selectedColor?.label || 'Select a color...'}{' '}
+                    <Box style={{...(showColorValue && {flexShrink: 0})}}>
+                      <Text weight="semibold" textOverflow="ellipsis">
+                        {selectedColor?.label || 'Select a color...'}{' '}
+                      </Text>
                     </Box>
                     {showColorValue && (
-                      <Box style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                        {selectedColor?.value}
+                      <Box>
+                        <Text textOverflow="ellipsis">{selectedColor?.value}</Text>
                       </Box>
                     )}
                   </Flex>
