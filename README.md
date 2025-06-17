@@ -252,7 +252,7 @@ This option was removed in favor of the more precise `colorFormat` setting. The 
 
 ### Color Value Showing
 
-By default, the library show the color value in the input field. If you want to hide it, you can set `showColorValue` to `false`.
+By default, the library shows the color value in the input field. If you want to hide it, you can set `showColorValue` to `false`.
 
 ```js
 // ...fields...
