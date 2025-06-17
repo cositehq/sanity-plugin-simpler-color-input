@@ -5,6 +5,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v3.0.1...v3.1.0) (2025-06-17)
+
+### Features
+
+- add color value showing toggle option ([f2a07b3](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/f2a07b3cdfde525d9bd3c7957685378a1aeefc6a))
+
+### Bug Fixes
+
+- fix color value overflowing fix implementation ([61e2bc1](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/61e2bc1620b45b88b0d7defe6c61b0662d8bd28f))
+- fix text overflow effect ([b816414](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/b8164140972accf0240f7b705e6aefa77bf9541d))
+- simplify overflow code ([e86cdbe](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/e86cdbe61581380f7c74e695b36625dee99a2cf3))
+
 ## [3.0.1](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v3.0.0...v3.0.1) (2025-02-26)
 
 ### Bug Fixes
