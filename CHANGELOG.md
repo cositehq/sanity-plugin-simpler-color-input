@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v3.1.0...v3.1.1) (2025-07-15)
+
+### Bug Fixes
+
+- **deps:** allow studio v4 in peer dep ranges ([5a41103](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/5a4110327cdb64233bb4f8d342021b12be50ba77))
+
 ## [3.1.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v3.0.1...v3.1.0) (2025-06-17)
 
 ### Features
