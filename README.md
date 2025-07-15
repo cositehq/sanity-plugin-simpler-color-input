@@ -10,7 +10,7 @@
 
 ## 🤩 Features
 
-✓ Sanity v3 support
+✓ Sanity v3 and v4 support
 
 ✓ Select a custom color using a color picker or HEX values
 
@@ -21,8 +21,6 @@
 ✓ Dark mode support
 
 ## 🔌 Install
-
-> This is a **Sanity Studio v3** plugin.
 
 ```sh
 npm install sanity-plugin-simpler-color-input
