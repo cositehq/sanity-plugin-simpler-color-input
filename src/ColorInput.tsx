@@ -13,7 +13,7 @@ import {
   TextInput,
 } from '@sanity/ui'
 import {type ColorResult, type HsvaColor} from '@uiw/react-color'
-import {type RefObject, useCallback, useEffect, useRef, useState} from 'react'
+import {useCallback, useEffect, useRef, useState} from 'react'
 import {type ObjectInputProps, type ObjectOptions, type ObjectSchemaType, set, unset} from 'sanity'
 
 export interface SimplerColorType {
@@ -107,7 +107,7 @@ export const SimplerColorInput = (props: ObjectInputProps) => {
     onChange(set({...props.value, ...formattedColor}))
   }
 
-  const ref: RefObject<HTMLDivElement> = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (!isOpen) setSearchValue('')
 

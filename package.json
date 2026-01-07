@@ -52,9 +52,9 @@
     "conventional-changelog-conventionalcommits": ">= 8.0.0"
   },
   "dependencies": {
-    "@sanity/icons": "^3.5.3",
+    "@sanity/icons": "^3.7.4",
     "@sanity/incompatible-plugin": "^1.0.5",
-    "@sanity/ui": "^2.10.10",
+    "@sanity/ui": "^3.1.11",
     "@uiw/react-color": "^2.3.0",
     "react-icons": "^5.3.0"
   },
@@ -65,7 +65,7 @@
     "@sanity/plugin-kit": "^4.0.18",
     "@sanity/prettier-config": "1.0.3",
     "@sanity/semantic-release-preset": "^5.0.0",
-    "@types/react": "^18.3.12",
+    "@types/react": "^19.0.0",
     "@types/react-color": "^2.17.11",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
@@ -79,20 +79,27 @@
     "lint-staged": "^13.0.3",
     "npm-run-all2": "^5.0.2",
     "prettier": "^3.3.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "sanity": "^3.67.1",
+    "react": "^19.2.2",
+    "react-dom": "^19.2.2",
+    "sanity": "^5.2.0",
     "semantic-release": "^24.2.0",
-    "styled-components": "^6.1.13",
+    "styled-components": "^6.2.0",
     "typescript": "^5.6.3"
   },
   "peerDependencies": {
-    "react": "^18.3 || ^19",
-    "sanity": "^3.23.0 || ^4.0.0-0",
-    "styled-components": "^6.1"
+    "react": "^19.2.2",
+    "react-dom": "^19.2.2",
+    "sanity": "^5.0.0",
+    "styled-components": "^6.1.15"
   },
   "engines": {
     "node": ">=18"
+  },
+  "sanityPlugin": {
+    "verifyPackage": {
+      "sanityV2Json": false,
+      "v2PluginMigrated": false
+    }
   },
   "publishConfig": {
     "access": "public"
