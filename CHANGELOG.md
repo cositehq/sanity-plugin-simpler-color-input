@@ -5,6 +5,30 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v3.1.1...v4.0.0) (2026-01-07)
+
+### ⚠ BREAKING CHANGES
+
+- **deps**: Now requires Sanity Studio v5 (sanity@5.x)
+- **deps**: Now requires React 19.2.2 or higher
+- **deps**: `styled-components` v6.1.15 or later is now required
+- Updated `@sanity/ui` to v3.x and `@sanity/icons` to v3.7.x
+
+### Features
+
+- Add support for Sanity Studio v5 and React 19
+
+### Migration Guide
+
+If you're upgrading from v3.x:
+
+1. Ensure your project is using Sanity Studio v5 (`sanity@^5.0.0`)
+2. Ensure your project is using React 19.2.2 or higher
+3. Update styled-components to v6.1.15 or higher
+4. Update this plugin: `npm install sanity-plugin-simpler-color-input@4`
+
+For Sanity Studio v3/v4 with React 18, continue using version 3.x of this plugin.
+
 ## [3.1.1](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v3.1.0...v3.1.1) (2025-07-15)
 
 ### Bug Fixes

@@ -10,7 +10,7 @@
 
 ## 🤩 Features
 
-✓ Sanity v3 and v4 support
+✓ Sanity v5 support (React 19)
 
 ✓ Select a custom color using a color picker or HEX values
 
@@ -19,6 +19,15 @@
 ✓ Use in the Portable Text editor to color or highlight text
 
 ✓ Dark mode support
+
+## ⚠️ Version Compatibility
+
+| Plugin Version | Sanity Studio Version | React Version |
+| -------------- | --------------------- | ------------- |
+| 4.x            | 5.x                   | 19.x          |
+| 3.x            | 3.x - 4.x             | 18.x          |
+
+> **Note:** For Sanity Studio v3/v4 with React 18, use version 3.x of this plugin.
 
 ## 🔌 Install
 
