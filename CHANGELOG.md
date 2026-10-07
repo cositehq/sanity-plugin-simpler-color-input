@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v4.0.0...v4.1.0) (2026-10-07)
+
+### Features
+
+- add support for sanity v6 ([#41](https://github.com/cositehq/sanity-plugin-simpler-color-input/issues/41)) ([407716b](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/407716b1df09272dc5082bd65bad439b8ba87eee))
+
 ## [4.0.0](https://github.com/cositehq/sanity-plugin-simpler-color-input/compare/v3.1.1...v4.0.0) (2026-01-08)
 
 ### ⚠ BREAKING CHANGES
@@ -18,6 +24,7 @@ All notable changes to this project will be documented in this file. See
 - Add support for Sanity Studio v5 and React 19 ([90cf6b6](https://github.com/cositehq/sanity-plugin-simpler-color-input/commit/90cf6b6ce37a18ceb35893d25e3bbb74e26081ed))
 
 ### Miscellaneous Chores
+
 - Updated `@sanity/ui` to v3.x and `@sanity/icons` to v3.7.x
 
 ### Migration Guide
